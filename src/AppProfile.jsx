@@ -2,8 +2,13 @@ import "./App.css";
 import Profile from "./components/Profile";
 
 function AppProfile() {
+  const handleClick = (event) => {
+    console.log(event);
+    alert("버튼이 클릭됨!");
+  };
   return (
     <>
+      <button onClick={handleClick}>버튼</button>
       <Profile
         title="프로트엔드 개발자"
         name="James"

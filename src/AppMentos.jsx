@@ -1,17 +1,40 @@
 import React, { useState } from "react";
 
 export default function AppMento() {
-  const [person, setPerson] = useState({
-    name: "james",
-    title: "개발자",
-    mentors: [
-      {
-        name: "kdw",
-        title: "프론트개발자",
-      },
-      { name: "dana", title: "백엔드개발자" },
-    ],
-  });
+  const [person, setPerson] = useState(initialPerson);
+
+  const handleUpdate = () => {
+    const prev = prompt(`누구의 이름을 바꾸고 싶으신가요?`);
+    const current = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
+    setPerson((data) => ({
+      ...data,
+      mentors: person.mentors.map((mentor) => {
+        if (mentor.name === prev) {
+          return { ...mentor, name: current };
+        } else {
+          return mentor;
+        }
+      }),
+    }));
+  };
+
+  const handleAdd = () => {
+    const name = prompt(`이름을 입력하세요`);
+    const title = prompt(`타이틀을 입력하세요`);
+
+    setPerson((mentor) => {
+      return { ...mentor, mentors: [...mentor.mentors, { name, title }] };
+    });
+  };
+
+  const handleDelete = () => {
+    const name = prompt(`삭제할 이름을 입력하세요`);
+    setPerson((person) => ({
+      ...person,
+      mentors: person.mentors.filter((m) => m.name !== name),
+    }));
+  };
+
   return (
     <div>
       <h1>
@@ -25,25 +48,21 @@ export default function AppMento() {
           </li>
         ))}
       </ul>
-      <button
-        onClick={() => {
-          const prev = prompt(`누구의 이름을 바꾸고 싶으신가요?`);
-          const current = prompt(`이름을 무엇으로 바꾸고 싶은가요?`);
-
-          setPerson((data) => ({
-            ...data,
-            mentors: person.mentors.map((mentor) => {
-              if (mentor.name === prev) {
-                return { ...mentor, name: current };
-              } else {
-                return mentor;
-              }
-            }),
-          }));
-        }}
-      >
-        멘토 이름을 바꾸기
-      </button>
+      <button onClick={handleUpdate}>멘토 이름을 바꾸기</button>
+      <button onClick={handleAdd}>멘토 추가하기</button>
+      <button onClick={handleDelete}>멘토 삭제하기</button>
     </div>
   );
 }
+
+const initialPerson = {
+  name: "james",
+  title: "개발자",
+  mentors: [
+    {
+      name: "kdw",
+      title: "프론트개발자",
+    },
+    { name: "dana", title: "백엔드개발자" },
+  ],
+};

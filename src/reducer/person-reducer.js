@@ -1,3 +1,4 @@
+// reducer
 export default function personReducer(person, action) {
   switch (action.type) {
     case "updated": {

@@ -28,6 +28,7 @@ export default function AppMentosImmer() {
     const name = prompt(`삭제할 이름을 입력하세요`);
     updatePerson((person) => {
       const index = person.mentors.findIndex((m) => m.name === name);
+      if (index < 0) return;
       person.mentors.splice(index, 1);
     });
   };

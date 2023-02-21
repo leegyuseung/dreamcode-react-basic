@@ -16,12 +16,12 @@ export default function AppMentosImmer() {
   const handleAdd = () => {
     const name = prompt(`이름을 입력하세요`);
     const title = prompt(`타이틀을 입력하세요`);
-    updatePerson((person) =>
+    updatePerson((person) => {
       person.mentors.push({
         name,
         title,
-      })
-    );
+      });
+    });
   };
 
   const handleDelete = () => {

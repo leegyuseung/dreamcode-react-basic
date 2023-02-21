@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import AppMentos from "./AppMentos";
+import AppForm from "./AppForm";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AppMentos />
+    <AppForm />
   </React.StrictMode>
 );
 
